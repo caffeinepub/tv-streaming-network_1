@@ -1,0 +1,45 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-16T23:14:19.553Z",
+  "summary": "Frontend adds an admin-token dialog/controls, hides/shows the “Manage Videos” nav item based on `isAdmin`, and auto-navigates to the manage view after success. However, the diff evidence does not show the backend implementing the required `Security777` token validation and admin-session granting (e.g., `loginAsAdmin` / setting admin for the caller), so the core admin unlock mechanism may be incomplete.",
+  "missing_requirements": [
+    {
+      "id": "REQ-17",
+      "requirement": "Admin login code \"Security777\" grants admin access for the currently signed-in Internet Identity session so `useIsAdmin()` resolves `isAdmin=true` without refresh, enabling the Manage Videos dashboard and its Add/Edit/Delete UI; wrong token does not grant access and shows a clear English error.",
+      "reason": "Frontend calls `actor.loginAsAdmin(token)` and expects backend to validate the token and grant admin status for the current caller, but the backend diff snippet does not show any `loginAsAdmin` implementation, any explicit check for the exact code \"Security777\", or any logic that mutates admin state for a session/caller based on that token. Without that, `useIsAdmin()` cannot become true as required.",
+      "evidence": [
+        "frontend/src/hooks/useAdminToken.ts (calls `await actor.loginAsAdmin(token);` and then refetches `['isAdmin']`)",
+        "backend/main.mo (shown portions include admin checks on CRUD via `AccessControl.isAdmin`, but no visible token/code validation or `loginAsAdmin` method in the provided truncated content)"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Ability to “Clear Admin Access” (sign out of admin mode) via a dedicated button and token clearing behavior.",
+      "reason": "The BuildRequest requires granting access with code and improving post-login navigation/confirmation; it does not request an explicit admin sign-out/clear-access control.",
+      "evidence": [
+        "frontend/src/components/auth/AdminAuthControls.tsx (renders \"Clear Admin Access\" and calls `clearAdminToken()`)",
+        "frontend/src/hooks/useAdminToken.ts (implements `clearAdminToken` and invalidates queries)"
+      ]
+    },
+    {
+      "description": "Client-side access-denied toasts and forced redirect to Home when navigating to Manage without admin.",
+      "reason": "The request focuses on making Manage Videos visible after admin token and auto-navigation after success; explicit toast-based denial handling and redirect logic are additional UX not explicitly requested.",
+      "evidence": [
+        "frontend/src/App.tsx (toast.error \"Access Denied\" and redirects to home in `handleNavigate` and an effect)"
+      ]
+    }
+  ],
+  "confidence": 0.62,
+  "changed_files": [
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/src/App.tsx",
+    "frontend/src/components/auth/AdminAuthControls.tsx",
+    "frontend/src/components/auth/AdminTokenDialog.tsx",
+    "frontend/src/components/layout/TopNav.tsx",
+    "frontend/src/hooks/useAdminToken.ts",
+    "project_state.json"
+  ]
+}

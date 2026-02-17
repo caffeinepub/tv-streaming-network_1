@@ -1,0 +1,58 @@
+import { useInternetIdentity } from '../../hooks/useInternetIdentity';
+import { useQueryClient } from '@tanstack/react-query';
+import { Button } from '@/components/ui/button';
+import { LogIn, LogOut } from 'lucide-react';
+
+export default function UserAuthButton() {
+  const { login, clear, loginStatus, identity } = useInternetIdentity();
+  const queryClient = useQueryClient();
+
+  const isAuthenticated = !!identity;
+  const isLoggingIn = loginStatus === 'logging-in';
+
+  const handleAuth = async () => {
+    if (isAuthenticated) {
+      // Sign out
+      await clear();
+      queryClient.clear();
+    } else {
+      // Sign in
+      try {
+        await login();
+      } catch (error: any) {
+        console.error('Login error:', error);
+        if (error.message === 'User is already authenticated') {
+          await clear();
+          setTimeout(() => login(), 300);
+        }
+      }
+    }
+  };
+
+  return (
+    <Button
+      onClick={handleAuth}
+      disabled={isLoggingIn}
+      variant={isAuthenticated ? 'outline' : 'default'}
+      size="sm"
+      className="gap-2"
+    >
+      {isLoggingIn ? (
+        <>
+          <div className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
+          <span className="hidden sm:inline">Signing in...</span>
+        </>
+      ) : isAuthenticated ? (
+        <>
+          <LogOut className="h-4 w-4" />
+          <span className="hidden sm:inline">Sign out</span>
+        </>
+      ) : (
+        <>
+          <LogIn className="h-4 w-4" />
+          <span className="hidden sm:inline">Sign in</span>
+        </>
+      )}
+    </Button>
+  );
+}

@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Project is an app with content upload/admin capabilities; user needs an admin dashboard access flow.",
+  "architectural_notes": [
+    "Decide/authenticate admin access via Internet Identity vs a custom PIN (\"Security777\") and define which governs dashboard visibility."
+  ],
+  "known_issues": [
+    "Dashboard is not visible to the user after login, blocking content administration."
+  ],
+  "isFixRequest": true,
+  "existing_features": [
+    {
+      "id": "feature-ensure-the-admin-login-code-security777-grants-admin-access-for-the-currently-signed-in-internet-identity-session-so-the-admin-dashboard-manage-videos-view-becomes-visible-and-accessible",
+      "title": "Ensure the admin login code \"Security777\" grants admin access for the currently signed-in Internet Identity session, so the admin dashboard (Manage Videos view) becomes visible and accessible.",
+      "reqIds": [
+        "REQ-17"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-make-the-dashboard-discoverable-by-improving-the-post-admin-login-ux-after-successfully-applying-a-valid-admin-token-automatically-direct-the-user-to-the-admin-dashboard-view-manage-videos-and-confirm-access-in-the-ui",
+      "title": "Make the dashboard discoverable by improving the post-admin-login UX: after successfully applying a valid admin token, automatically direct the user to the admin dashboard view (Manage Videos) and confirm access in the UI.",
+      "reqIds": [
+        "REQ-18"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Add an admin dashboard UI that is visible/accessible after login so admin can add/manage content.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Implement a login code/PIN flow using code \"Security777\" to unlock/admin-access the dashboard.",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "projectName": "TV Streaming Network",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

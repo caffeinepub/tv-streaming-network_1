@@ -1,0 +1,21 @@
+{
+  "frontend/src/index.css": "Global styles with OKLCH color system customized for a dark cinematic theme with deep red accents, including custom scrollbar utilities.",
+  "frontend/tailwind.config.js": "Tailwind configuration with custom fonts (Inter, Outfit), extended color tokens, border radius, shadows, and animations for the Netflix-style interface.",
+  "frontend/src/App.tsx": "Main application component with view state management, admin-only access control for manage view, and automatic navigation to dashboard after successful admin token application.",
+  "frontend/src/utils/youtube.ts": "YouTube URL parsing utility that extracts video IDs from watch, youtu.be, and embed formats, plus thumbnail URL generator.",
+  "frontend/src/hooks/useVideos.ts": "React Query hooks for video CRUD operations including list, create, update, delete, and getOriginalShows with genre field support and automatic cache invalidation.",
+  "frontend/src/components/layout/TopNav.tsx": "Sticky navigation header with app branding, view navigation buttons, user auth button, and admin auth controls with callback support for post-admin-grant navigation.",
+  "frontend/src/components/home/Hero.tsx": "Cinematic hero section with background image, gradient overlays, title, neutral description about premium video content, and explore button.",
+  "frontend/src/components/home/HomeView.tsx": "Home page container rendering hero section, Originals row, and genre-based video rows (Comedy, Drama, Documentary) with loading, error, and empty states.",
+  "frontend/src/components/videos/VideoRow.tsx": "Horizontally scrollable video row with navigation arrows and smooth scrolling behavior.",
+  "frontend/src/components/videos/VideoCard.tsx": "Video card component displaying thumbnail, title, description, and play overlay that opens player dialog on click.",
+  "frontend/src/components/videos/VideoPlayerDialog.tsx": "Modal dialog containing embedded YouTube iframe player with video title and description.",
+  "frontend/src/components/manage/ManageVideosView.tsx": "Admin-only video management interface with explicit admin gate showing loading state during admin check, access denied alert for non-admins, and full CRUD interface for verified admins.",
+  "frontend/src/components/manage/VideoForm.tsx": "Form component for creating and editing videos with title, description, YouTube URL, required genre selector (Comedy/Drama/Documentary), isOriginal checkbox, and validation.",
+  "frontend/src/components/manage/VideoListItem.tsx": "List item component displaying video thumbnail, metadata, Original badge when applicable, and edit/delete action buttons with confirmation dialog.",
+  "frontend/src/hooks/useAdmin.ts": "React Query hook that checks if the current user is an admin using the backend isCallerAdmin method.",
+  "frontend/src/hooks/useAdminToken.ts": "Hook to manage admin token that calls the backend loginAsAdmin method, validates the token, and triggers actor/admin state re-evaluation with proper error handling and admin status confirmation.",
+  "frontend/src/components/auth/UserAuthButton.tsx": "User authentication button component that handles Internet Identity sign-in/sign-out with loading states and query cache clearing.",
+  "frontend/src/components/auth/AdminTokenDialog.tsx": "Modal dialog for admin sign-in that collects admin code input, calls the backend to validate it, shows clear error messages for invalid codes, and triggers success callback only after admin status is confirmed true.",
+  "frontend/src/components/auth/AdminAuthControls.tsx": "Admin authentication controls that show \"Admin Sign In\" button or \"Clear Admin Access\" based on admin status, with callback support to trigger navigation after successful admin grant."
+}
