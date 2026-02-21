@@ -1,11 +1,11 @@
 # Specification
 
 ## Summary
-**Goal:** Make the admin dashboard (Manage Videos) appear and become accessible immediately after a signed-in user enters the admin code "Security777".
+**Goal:** Add an initial splash page that displays “TV STREAMING NETWORK” on first app load before the existing Home view.
 
 **Planned changes:**
-- Ensure entering the admin token exactly "Security777" in the Admin Sign In dialog grants admin access for the current Internet Identity session, updating `useIsAdmin()` to `isAdmin=true` without a page refresh.
-- After admin access is granted, reveal/enable the top navigation entry for the admin dashboard (“Manage Videos”) and allow navigation to the management UI (Add/Edit/Delete).
-- Improve post-login UX by automatically navigating to “Manage Videos” after successful admin token application and showing a clear English confirmation; on incorrect token, show a clear English error and do not navigate.
+- Introduce a new initial “Splash” view/state shown on first load, with the exact title text “TV STREAMING NETWORK”.
+- Add a clear continue action on the splash page that transitions into the existing Home view.
+- Hide the existing TopNav while the splash page is active, and render it normally after continuing to Home.
 
-**User-visible outcome:** Signed-in users who enter "Security777" will immediately see the “Manage Videos” dashboard in navigation and be taken to it automatically; incorrect codes won’t grant access and will show an English error.
+**User-visible outcome:** On first loading the app, users see a splash page titled “TV STREAMING NETWORK” with a continue action; after continuing, they reach the unchanged Home view with the normal TopNav and can access Admin Sign In and (if authorized) Manage Videos as before.

@@ -1,28 +1,32 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "Project is an app with content upload/admin capabilities; user needs an admin dashboard access flow.",
-  "architectural_notes": [
-    "Decide/authenticate admin access via Internet Identity vs a custom PIN (\"Security777\") and define which governs dashboard visibility."
-  ],
-  "known_issues": [
-    "Dashboard is not visible to the user after login, blocking content administration."
-  ],
-  "isFixRequest": true,
+  "summary": "New project",
+  "architectural_notes": [],
+  "known_issues": [],
+  "isFixRequest": false,
   "existing_features": [
     {
-      "id": "feature-ensure-the-admin-login-code-security777-grants-admin-access-for-the-currently-signed-in-internet-identity-session-so-the-admin-dashboard-manage-videos-view-becomes-visible-and-accessible",
-      "title": "Ensure the admin login code \"Security777\" grants admin access for the currently signed-in Internet Identity session, so the admin dashboard (Manage Videos view) becomes visible and accessible.",
+      "id": "feature-add-a-splash-page-that-appears-on-first-app-load-and-prominently-displays-the-text-tv-streaming-network-before-the-user-reaches-the-existing-home-view",
+      "title": "Add a splash page that appears on first app load and prominently displays the text \"TV STREAMING NETWORK\" before the user reaches the existing Home view.",
       "reqIds": [
-        "REQ-17"
+        "REQ-1"
       ],
       "version": 1
     },
     {
-      "id": "feature-make-the-dashboard-discoverable-by-improving-the-post-admin-login-ux-after-successfully-applying-a-valid-admin-token-automatically-direct-the-user-to-the-admin-dashboard-view-manage-videos-and-confirm-access-in-the-ui",
-      "title": "Make the dashboard discoverable by improving the post-admin-login UX: after successfully applying a valid admin token, automatically direct the user to the admin dashboard view (Manage Videos) and confirm access in the UI.",
+      "id": "feature-provide-a-clear-action-on-the-splash-page-to-continue-into-the-app-navigate-to-the-existing-home-view-and-ensure-the-splash-page-does-not-block-access-to-admin-sign-in-and-the-manage-videos-view-once-the-user-continues",
+      "title": "Provide a clear action on the splash page to continue into the app (navigate to the existing Home view) and ensure the splash page does not block access to admin sign-in and the Manage Videos view once the user continues.",
       "reqIds": [
-        "REQ-18"
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-app-s-view-state-flow-to-support-a-new-initial-splash-view-and-hide-the-existing-topnav-while-the-splash-page-is-active",
+      "title": "Update the app’s view/state flow to support a new initial \"splash\" view and hide the existing TopNav while the splash page is active.",
+      "reqIds": [
+        "REQ-3"
       ],
       "version": 1
     }
@@ -30,17 +34,12 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Add an admin dashboard UI that is visible/accessible after login so admin can add/manage content.",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-2",
-      "summary": "Implement a login code/PIN flow using code \"Security777\" to unlock/admin-access the dashboard.",
+      "summary": "Add a splash page displaying 'TV STREAMING NETWORK'",
       "reqIds": [],
       "status": "pending"
     }
   ],
+  "gameProjectType": "none",
   "projectName": "TV Streaming Network",
   "clarification_mode": "instant",
   "clarification_rounds": 0

@@ -1,58 +1,68 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "TV Streaming Network — Admin token unlock + dashboard navigation UX",
+  "title": "Splash page flow for TV Streaming Network",
   "requirements": [
     {
-      "id": "REQ-17",
-      "summary": "Make entering the admin code \"Security777\" update admin state immediately for the current Internet Identity session and reveal the Manage Videos dashboard, with clear errors on invalid codes.",
+      "id": "REQ-1",
+      "summary": "Add a first-load splash page that shows \"TV STREAMING NETWORK\" before the existing Home view.",
       "acceptanceCriteria": [
-        "When a user is signed in with Internet Identity and enters the admin token exactly \"Security777\" in the Admin Sign In dialog, `useIsAdmin()` resolves `isAdmin=true` without requiring a page refresh.",
-        "After admin access is granted, the top navigation shows the admin dashboard entry (currently labeled “Manage Videos”).",
-        "After admin access is granted, the user can navigate to the Manage Videos view and see the management UI (Add/Edit/Delete).",
-        "When an incorrect token is entered, admin access is not granted and the dashboard entry remains hidden/disabled, with a clear English error message."
+        "On a fresh load, the splash page is shown before the existing Home view content (Hero + video rows).",
+        "The splash page includes the exact visible title text: \"TV STREAMING NETWORK\".",
+        "The existing Home view remains available and unchanged once the user proceeds past the splash page."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/hooks/useAdminToken.ts",
-          "operation": "modify",
-          "description": "Fix admin-token application to reliably re-create/refetch the actor and re-check `useIsAdmin()` by invalidating/refetching the existing actor query key shape (it is keyed by ['actor', principal]) rather than only ['actor']. Ensure applying/clearing the token triggers immediate `isAdmin` re-evaluation (no page refresh needed)."
+          "path": "frontend/src/components/splash/SplashView.tsx",
+          "operation": "create",
+          "description": "Create a SplashView UI that prominently renders the exact title text \"TV STREAMING NETWORK\" and provides a clear primary continue control; may optionally include the existing static logo asset at frontend/public/assets/generated/tv-streaming-network-logo.dim_512x512.png for branding."
         },
         {
-          "path": "frontend/src/components/auth/AdminTokenDialog.tsx",
+          "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Update the Admin Sign In dialog apply flow to: (1) persist the token via `useAdminToken()`, (2) await a re-check of admin status (via react-query refetch/invalidation), and (3) only close the dialog / report success if admin becomes true. If admin remains false (e.g., wrong token), keep the dialog open (or reopen), clear/reset the token as needed, and show a clear English error message. Use existing shadcn/ui dialog/input/button components; verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/components/layout/TopNav.tsx",
-          "operation": "modify",
-          "description": "Ensure the Manage Videos navigation item is shown immediately once `isAdmin` becomes true (reactive rendering). If any additional wiring is needed to propagate an admin-granted event (for auto-navigation), add the minimal prop plumbing here without changing immutable ui components; verify the component's usage instructions before implementing."
+          "description": "Introduce an initial splash view into the app’s view switching so the splash view renders before HomeView on a fresh load; keep HomeView usage unchanged once the user continues."
         }
       ]
     },
     {
-      "id": "REQ-18",
-      "summary": "After a successful admin token is applied and admin status becomes true, automatically navigate the user to Manage Videos and confirm access in the UI.",
+      "id": "REQ-2",
+      "summary": "Add a clear continue action from the splash page into Home without impacting admin sign-in or Manage Videos access rules.",
       "acceptanceCriteria": [
-        "After the user applies a valid admin token and admin status becomes true, the app navigates to the Manage Videos view automatically.",
-        "If admin status does not become true (e.g., wrong token), the app does not navigate and remains on the current view.",
-        "All user-facing messages remain in English."
+        "The splash page contains a clearly labeled continue action (e.g., a button) that transitions to the existing Home view.",
+        "After continuing, the existing TopNav is visible and the user can use Admin Sign In and, if authorized, access Manage Videos as before.",
+        "No admin-gating logic is weakened: Manage Videos remains restricted to admins only (same behavior as current app)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/splash/SplashView.tsx",
+          "operation": "modify",
+          "description": "Wire the splash page continue control to call an onContinue callback so App can transition to the existing Home view."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Handle the splash continue action by transitioning to the existing Home view while preserving the current admin gating behavior in handleNavigate/useEffect and keeping Admin Sign In + Manage Videos navigation behavior unchanged after the splash is dismissed."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Extend app state to include a splash view, hide TopNav during splash, and persist splash until the user continues (including refresh).",
+      "acceptanceCriteria": [
+        "When the splash page is active, the TopNav is not rendered.",
+        "When the user continues, the app transitions to the existing Home view and TopNav renders normally.",
+        "Refreshing the page while on the splash page still shows the splash page until the user continues."
       ],
       "file_operations": [
         {
           "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Add a small, explicit post-admin-login navigation flow: when the admin token is successfully applied (and `isAdmin` is confirmed true), automatically switch the current view to 'manage' and show an English confirmation message (toast). Ensure no navigation occurs on failed token attempts."
+          "description": "Add a new 'splash' value to the view state and conditionally not render TopNav while in the splash view; ensure TopNav renders normally for home/manage."
         },
         {
-          "path": "frontend/src/components/auth/AdminAuthControls.tsx",
+          "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Wire an 'admin access granted' callback from the Admin Sign In flow up to App (through TopNav if needed). Trigger it only after admin is confirmed true, so successful token application results in immediate navigation and a clear UI confirmation. Use existing shadcn/ui button and existing toast system; verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/components/auth/AdminTokenDialog.tsx",
-          "operation": "modify",
-          "description": "Extend the dialog component to accept an optional success callback and invoke it only after admin is confirmed true (post-refetch). Keep all user-facing messages in English and ensure failure does not navigate away."
+          "description": "Persist splash dismissal state in web storage (e.g., sessionStorage) so that (a) a fresh load shows splash, (b) refreshing while still on splash keeps showing splash, and (c) only the user’s explicit continue action dismisses the splash for the session."
         }
       ]
     }

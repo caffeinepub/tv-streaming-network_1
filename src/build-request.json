@@ -1,55 +1,73 @@
 {
   "kind": "build_request",
-  "title": "Make admin dashboard visible after entering login code Security777",
+  "title": "Add splash page for TV Streaming Network",
   "projectName": "TV Streaming Network",
-  "priority": "high",
+  "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-17",
-      "text": "Ensure the admin login code \"Security777\" grants admin access for the currently signed-in Internet Identity session, so the admin dashboard (Manage Videos view) becomes visible and accessible.",
-      "target": "both",
-      "source": {
-        "messageIds": [
-          "recent-messages"
-        ],
-        "quotes": [
-          "i don't see dashboard. make dashboard appear login code  Security777"
-        ]
-      },
-      "acceptanceCriteria": [
-        "When a user is signed in with Internet Identity and enters the admin token exactly \"Security777\" in the Admin Sign In dialog, `useIsAdmin()` resolves `isAdmin=true` without requiring a page refresh.",
-        "After admin access is granted, the top navigation shows the admin dashboard entry (currently labeled “Manage Videos”).",
-        "After admin access is granted, the user can navigate to the Manage Videos view and see the management UI (Add/Edit/Delete).",
-        "When an incorrect token is entered, admin access is not granted and the dashboard entry remains hidden/disabled, with a clear English error message."
-      ]
-    },
-    {
-      "id": "REQ-18",
-      "text": "Make the dashboard discoverable by improving the post-admin-login UX: after successfully applying a valid admin token, automatically direct the user to the admin dashboard view (Manage Videos) and confirm access in the UI.",
+      "id": "REQ-1",
+      "text": "Add a splash page that appears on first app load and prominently displays the text \"TV STREAMING NETWORK\" before the user reaches the existing Home view.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "recent-messages"
+          "msg-1"
         ],
         "quotes": [
-          "i don't see dashboard. make dashboard appear login code  Security777"
+          "can I add a splash page TV STREAMING NETWORK"
         ]
       },
       "acceptanceCriteria": [
-        "After the user applies a valid admin token and admin status becomes true, the app navigates to the Manage Videos view automatically.",
-        "If admin status does not become true (e.g., wrong token), the app does not navigate and remains on the current view.",
-        "All user-facing messages remain in English."
+        "On a fresh load, the splash page is shown before the existing Home view content (Hero + video rows).",
+        "The splash page includes the exact visible title text: \"TV STREAMING NETWORK\".",
+        "The existing Home view remains available and unchanged once the user proceeds past the splash page."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Provide a clear action on the splash page to continue into the app (navigate to the existing Home view) and ensure the splash page does not block access to admin sign-in and the Manage Videos view once the user continues.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "can I add a splash page TV STREAMING NETWORK"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The splash page contains a clearly labeled continue action (e.g., a button) that transitions to the existing Home view.",
+        "After continuing, the existing TopNav is visible and the user can use Admin Sign In and, if authorized, access Manage Videos as before.",
+        "No admin-gating logic is weakened: Manage Videos remains restricted to admins only (same behavior as current app)."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Update the app’s view/state flow to support a new initial \"splash\" view and hide the existing TopNav while the splash page is active.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "can I add a splash page TV STREAMING NETWORK"
+        ]
+      },
+      "acceptanceCriteria": [
+        "When the splash page is active, the TopNav is not rendered.",
+        "When the user continues, the app transitions to the existing Home view and TopNav renders normally.",
+        "Refreshing the page while on the splash page still shows the splash page until the user continues."
       ]
     }
   ],
   "constraints": [
-    "Do not edit immutable frontend paths: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui/*.",
-    "Keep all Motoko backend logic in the single actor in backend/main.mo; only add/modify migration.mo if a stable-state upgrade is required."
+    "Do not edit any files under frontend/src/components/ui (shadcn UI components must be composed, not modified).",
+    "Do not modify immutable hook entrypoints (frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx).",
+    "Backend remains a single Motoko actor (no new backend services)."
   ],
   "nonGoals": [
-    "Do not add third-party authentication providers; Internet Identity remains the only user authentication method.",
-    "Do not add real-time features (WebSockets/chat).",
-    "Do not introduce external databases or additional backend services."
+    "Do not change the existing admin code/PIN (\"Security777\") behavior.",
+    "Do not add new authentication methods beyond Internet Identity.",
+    "Do not redesign the existing Home view content structure beyond what is necessary to introduce the splash page."
   ],
   "imageRequirements": {
     "required": [],
