@@ -16,15 +16,6 @@ export default function SplashView({ onContinue }: SplashViewProps) {
 
       {/* Main content */}
       <div className="relative z-10 text-center space-y-12 px-4 max-w-4xl mx-auto">
-        {/* Logo */}
-        <div className="flex justify-center mb-8">
-          <img
-            src="/assets/generated/tv-streaming-network-logo.dim_512x512.png"
-            alt="TV Streaming Network Logo"
-            className="h-32 w-32 object-contain animate-in fade-in zoom-in duration-700"
-          />
-        </div>
-
         {/* Title */}
         <div className="space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-300">
           <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-bold tracking-tight text-foreground">

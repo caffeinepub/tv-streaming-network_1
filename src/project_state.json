@@ -7,26 +7,18 @@
   "isFixRequest": false,
   "existing_features": [
     {
-      "id": "feature-add-a-splash-page-that-appears-on-first-app-load-and-prominently-displays-the-text-tv-streaming-network-before-the-user-reaches-the-existing-home-view",
-      "title": "Add a splash page that appears on first app load and prominently displays the text \"TV STREAMING NETWORK\" before the user reaches the existing Home view.",
+      "id": "feature-remove-the-logo-box-display-from-the-splashview-component",
+      "title": "Remove the logo box display from the SplashView component",
       "reqIds": [
         "REQ-1"
       ],
       "version": 1
     },
     {
-      "id": "feature-provide-a-clear-action-on-the-splash-page-to-continue-into-the-app-navigate-to-the-existing-home-view-and-ensure-the-splash-page-does-not-block-access-to-admin-sign-in-and-the-manage-videos-view-once-the-user-continues",
-      "title": "Provide a clear action on the splash page to continue into the app (navigate to the existing Home view) and ensure the splash page does not block access to admin sign-in and the Manage Videos view once the user continues.",
+      "id": "feature-remove-the-logo-box-display-from-the-main-app-component",
+      "title": "Remove the logo box display from the main App component",
       "reqIds": [
         "REQ-2"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-update-the-app-s-view-state-flow-to-support-a-new-initial-splash-view-and-hide-the-existing-topnav-while-the-splash-page-is-active",
-      "title": "Update the app’s view/state flow to support a new initial \"splash\" view and hide the existing TopNav while the splash page is active.",
-      "reqIds": [
-        "REQ-3"
       ],
       "version": 1
     }
@@ -34,13 +26,12 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Add a splash page displaying 'TV STREAMING NETWORK'",
+      "summary": "Remove logo box from splash page and app",
       "reqIds": [],
       "status": "pending"
     }
   ],
-  "gameProjectType": "none",
-  "projectName": "TV Streaming Network",
+  "projectName": "Remove logo box from splash page and app",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

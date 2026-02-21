@@ -1,62 +1,46 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-18T04:42:49.898Z",
+  "generatedAt": "2026-02-21T23:41:23.504Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 3,
-    "implemented": 3,
+    "total": 2,
+    "implemented": 2,
     "items": [
       {
         "id": "REQ-1",
-        "summary": "Add a splash page that appears on first app load and prominently displays the text \"TV STREAMING NETWORK\" before the user reaches the existing Home view.",
+        "summary": "Remove the logo box display from the SplashView component",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/components/splash/SplashView.tsx",
-          "frontend/src/App.tsx"
+          "frontend/src/components/splash/SplashView.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/components/splash/SplashView.tsx",
-          "frontend/src/App.tsx"
+          "frontend/src/components/splash/SplashView.tsx"
         ]
       },
       {
         "id": "REQ-2",
-        "summary": "Provide a clear action on the splash page to continue into the app (navigate to the existing Home view) and ensure the splash page does not block access to admin sign-in and the Manage Videos view once the user continues.",
+        "summary": "Remove the logo box display from the main App component",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/components/splash/SplashView.tsx",
-          "frontend/src/App.tsx"
+          "frontend/src/components/layout/TopNav.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/components/splash/SplashView.tsx",
-          "frontend/src/App.tsx"
-        ]
-      },
-      {
-        "id": "REQ-3",
-        "summary": "Update the app’s view/state flow to support a new initial \"splash\" view and hide the existing TopNav while the splash page is active.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/App.tsx",
-          "frontend/src/App.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/App.tsx",
-          "frontend/src/App.tsx"
+          "frontend/src/components/layout/TopNav.tsx"
         ]
       }
     ]
   },
   "changedFiles": [
     "build-request.json",
+    "caffeine.lock.json",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/src/App.tsx",
+    "frontend/src/components/layout/TopNav.tsx",
     "frontend/src/components/splash/SplashView.tsx",
     "project_state.json",
     "scratch/component-selection.json",

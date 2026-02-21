@@ -2,10 +2,9 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-add-a-splash-page-that-appears-on-first-app-load-and-prominently-displays-the-text-tv-streaming-network-before-the-user-reaches-the-existing-home-view",
-      "featureTitle": "Add a splash page that appears on first app load and prominently displays the text \"TV STREAMING NETWORK\" before the user reaches the existing Home view.",
+      "featureId": "feature-remove-the-logo-box-display-from-the-splashview-component",
+      "featureTitle": "Remove the logo box display from the SplashView component",
       "files": [
-        "frontend/src/App.tsx",
         "frontend/src/components/splash/SplashView.tsx"
       ],
       "components": [
@@ -22,11 +21,10 @@
       "confidence": "high"
     },
     {
-      "featureId": "feature-provide-a-clear-action-on-the-splash-page-to-continue-into-the-app-navigate-to-the-existing-home-view-and-ensure-the-splash-page-does-not-block-access-to-admin-sign-in-and-the-manage-videos-view-once-the-user-continues",
-      "featureTitle": "Provide a clear action on the splash page to continue into the app (navigate to the existing Home view) and ensure the splash page does not block access to admin sign-in and the Manage Videos view once the user continues.",
+      "featureId": "feature-remove-the-logo-box-display-from-the-main-app-component",
+      "featureTitle": "Remove the logo box display from the main App component",
       "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/components/splash/SplashView.tsx"
+        "frontend/src/components/layout/TopNav.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -38,25 +36,6 @@
       ],
       "testIds": [
         "REQ-2"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-update-the-app-s-view-state-flow-to-support-a-new-initial-splash-view-and-hide-the-existing-topnav-while-the-splash-page-is-active",
-      "featureTitle": "Update the app’s view/state flow to support a new initial \"splash\" view and hide the existing TopNav while the splash page is active.",
-      "files": [
-        "frontend/src/App.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0",
-        "authorization@4.0.0"
-      ],
-      "testIds": [
-        "REQ-3"
       ],
       "confidence": "high"
     }

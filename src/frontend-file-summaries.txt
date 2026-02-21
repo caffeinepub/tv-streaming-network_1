@@ -4,7 +4,7 @@
   "frontend/src/App.tsx": "Main application component with view state management including splash/home/manage views, admin-only access control for manage view, session storage persistence for splash dismissal, and conditional TopNav rendering that hides during splash.",
   "frontend/src/utils/youtube.ts": "YouTube URL parsing utility that extracts video IDs from watch, youtu.be, and embed formats, plus thumbnail URL generator.",
   "frontend/src/hooks/useVideos.ts": "React Query hooks for video CRUD operations including list, create, update, delete, and getOriginalShows with genre field support and automatic cache invalidation.",
-  "frontend/src/components/layout/TopNav.tsx": "Sticky navigation header with app branding, view navigation buttons, user auth button, and admin auth controls with callback support for post-admin-grant navigation.",
+  "frontend/src/components/layout/TopNav.tsx": "Sticky navigation header with app branding text, view navigation buttons, user auth button, and admin auth controls with callback support for post-admin-grant navigation.",
   "frontend/src/components/home/Hero.tsx": "Cinematic hero section with background image, gradient overlays, title, neutral description about premium video content, and explore button.",
   "frontend/src/components/home/HomeView.tsx": "Home page container rendering hero section, Originals row, and genre-based video rows (Comedy, Drama, Documentary) with loading, error, and empty states.",
   "frontend/src/components/videos/VideoRow.tsx": "Horizontally scrollable video row with navigation arrows and smooth scrolling behavior.",
@@ -18,5 +18,5 @@
   "frontend/src/components/auth/UserAuthButton.tsx": "User authentication button component that handles Internet Identity sign-in/sign-out with loading states and query cache clearing.",
   "frontend/src/components/auth/AdminTokenDialog.tsx": "Modal dialog for admin sign-in that collects admin code input, calls the backend to validate it, shows clear error messages for invalid codes, and triggers success callback only after admin status is confirmed true.",
   "frontend/src/components/auth/AdminAuthControls.tsx": "Admin authentication controls that show \"Admin Sign In\" button or \"Clear Admin Access\" based on admin status, with callback support to trigger navigation after successful admin grant.",
-  "frontend/src/components/splash/SplashView.tsx": "Full-screen splash page component displaying \"TV STREAMING NETWORK\" title with logo, animated background elements, and a continue button that triggers the onContinue callback."
+  "frontend/src/components/splash/SplashView.tsx": "Full-screen splash page component displaying \"TV STREAMING NETWORK\" title with animated background elements and a continue button that triggers the onContinue callback."
 }

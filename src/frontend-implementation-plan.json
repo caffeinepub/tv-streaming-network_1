@@ -1,68 +1,37 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Splash page flow for TV Streaming Network",
+  "title": "Remove logo box from splash page and app",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Add a first-load splash page that shows \"TV STREAMING NETWORK\" before the existing Home view.",
+      "summary": "Remove the logo box display from the SplashView component",
       "acceptanceCriteria": [
-        "On a fresh load, the splash page is shown before the existing Home view content (Hero + video rows).",
-        "The splash page includes the exact visible title text: \"TV STREAMING NETWORK\".",
-        "The existing Home view remains available and unchanged once the user proceeds past the splash page."
+        "The logo box element is no longer visible on the splash page",
+        "The splash page layout remains visually balanced without the logo",
+        "Animations and other splash page elements continue to work correctly"
       ],
       "file_operations": [
         {
           "path": "frontend/src/components/splash/SplashView.tsx",
-          "operation": "create",
-          "description": "Create a SplashView UI that prominently renders the exact title text \"TV STREAMING NETWORK\" and provides a clear primary continue control; may optionally include the existing static logo asset at frontend/public/assets/generated/tv-streaming-network-logo.dim_512x512.png for branding."
-        },
-        {
-          "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Introduce an initial splash view into the app’s view switching so the splash view renders before HomeView on a fresh load; keep HomeView usage unchanged once the user continues."
+          "description": "Remove the logo box element and its associated image reference from the splash screen while preserving all animations, title, description, and the continue button. Ensure the layout remains centered and visually balanced without the logo."
         }
       ]
     },
     {
       "id": "REQ-2",
-      "summary": "Add a clear continue action from the splash page into Home without impacting admin sign-in or Manage Videos access rules.",
+      "summary": "Remove the logo box display from the main App component",
       "acceptanceCriteria": [
-        "The splash page contains a clearly labeled continue action (e.g., a button) that transitions to the existing Home view.",
-        "After continuing, the existing TopNav is visible and the user can use Admin Sign In and, if authorized, access Manage Videos as before.",
-        "No admin-gating logic is weakened: Manage Videos remains restricted to admins only (same behavior as current app)."
+        "The logo box element is no longer visible in the main app navigation or layout",
+        "The top navigation bar and other UI elements remain properly aligned",
+        "All app views (home, manage) continue to render correctly without the logo"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/splash/SplashView.tsx",
+          "path": "frontend/src/components/layout/TopNav.tsx",
           "operation": "modify",
-          "description": "Wire the splash page continue control to call an onContinue callback so App can transition to the existing Home view."
-        },
-        {
-          "path": "frontend/src/App.tsx",
-          "operation": "modify",
-          "description": "Handle the splash continue action by transitioning to the existing Home view while preserving the current admin gating behavior in handleNavigate/useEffect and keeping Admin Sign In + Manage Videos navigation behavior unchanged after the splash is dismissed."
-        }
-      ]
-    },
-    {
-      "id": "REQ-3",
-      "summary": "Extend app state to include a splash view, hide TopNav during splash, and persist splash until the user continues (including refresh).",
-      "acceptanceCriteria": [
-        "When the splash page is active, the TopNav is not rendered.",
-        "When the user continues, the app transitions to the existing Home view and TopNav renders normally.",
-        "Refreshing the page while on the splash page still shows the splash page until the user continues."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/App.tsx",
-          "operation": "modify",
-          "description": "Add a new 'splash' value to the view state and conditionally not render TopNav while in the splash view; ensure TopNav renders normally for home/manage."
-        },
-        {
-          "path": "frontend/src/App.tsx",
-          "operation": "modify",
-          "description": "Persist splash dismissal state in web storage (e.g., sessionStorage) so that (a) a fresh load shows splash, (b) refreshing while still on splash keeps showing splash, and (c) only the user’s explicit continue action dismisses the splash for the session."
+          "description": "Remove the logo box element and its associated image reference from the top navigation bar. Maintain proper alignment of navigation buttons, user auth controls, and admin controls. Ensure the branding text or other navigation elements remain properly positioned."
         }
       ]
     }

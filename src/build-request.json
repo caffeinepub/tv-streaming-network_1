@@ -1,86 +1,57 @@
 {
   "kind": "build_request",
-  "title": "Add splash page for TV Streaming Network",
-  "projectName": "TV Streaming Network",
+  "title": "Remove logo box from splash page and app",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Add a splash page that appears on first app load and prominently displays the text \"TV STREAMING NETWORK\" before the user reaches the existing Home view.",
+      "text": "Remove the logo box display from the SplashView component",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-1"
+          "msg-user-final"
         ],
         "quotes": [
-          "can I add a splash page TV STREAMING NETWORK"
+          "take out the logo box on splash page and App"
         ]
       },
       "acceptanceCriteria": [
-        "On a fresh load, the splash page is shown before the existing Home view content (Hero + video rows).",
-        "The splash page includes the exact visible title text: \"TV STREAMING NETWORK\".",
-        "The existing Home view remains available and unchanged once the user proceeds past the splash page."
+        "The logo box element is no longer visible on the splash page",
+        "The splash page layout remains visually balanced without the logo",
+        "Animations and other splash page elements continue to work correctly"
       ]
     },
     {
       "id": "REQ-2",
-      "text": "Provide a clear action on the splash page to continue into the app (navigate to the existing Home view) and ensure the splash page does not block access to admin sign-in and the Manage Videos view once the user continues.",
+      "text": "Remove the logo box display from the main App component",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-1"
+          "msg-user-final"
         ],
         "quotes": [
-          "can I add a splash page TV STREAMING NETWORK"
+          "take out the logo box on splash page and App"
         ]
       },
       "acceptanceCriteria": [
-        "The splash page contains a clearly labeled continue action (e.g., a button) that transitions to the existing Home view.",
-        "After continuing, the existing TopNav is visible and the user can use Admin Sign In and, if authorized, access Manage Videos as before.",
-        "No admin-gating logic is weakened: Manage Videos remains restricted to admins only (same behavior as current app)."
-      ]
-    },
-    {
-      "id": "REQ-3",
-      "text": "Update the app’s view/state flow to support a new initial \"splash\" view and hide the existing TopNav while the splash page is active.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-1"
-        ],
-        "quotes": [
-          "can I add a splash page TV STREAMING NETWORK"
-        ]
-      },
-      "acceptanceCriteria": [
-        "When the splash page is active, the TopNav is not rendered.",
-        "When the user continues, the app transitions to the existing Home view and TopNav renders normally.",
-        "Refreshing the page while on the splash page still shows the splash page until the user continues."
+        "The logo box element is no longer visible in the main app navigation or layout",
+        "The top navigation bar and other UI elements remain properly aligned",
+        "All app views (home, manage) continue to render correctly without the logo"
       ]
     }
   ],
   "constraints": [
-    "Do not edit any files under frontend/src/components/ui (shadcn UI components must be composed, not modified).",
-    "Do not modify immutable hook entrypoints (frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx).",
-    "Backend remains a single Motoko actor (no new backend services)."
+    "Do not modify the backend or data layer",
+    "Preserve all other visual elements and functionality of the splash page and app",
+    "Maintain the existing component structure and styling system"
   ],
   "nonGoals": [
-    "Do not change the existing admin code/PIN (\"Security777\") behavior.",
-    "Do not add new authentication methods beyond Internet Identity.",
-    "Do not redesign the existing Home view content structure beyond what is necessary to introduce the splash page."
+    "Adding new branding elements",
+    "Redesigning the splash page layout",
+    "Modifying navigation structure beyond logo removal"
   ],
   "imageRequirements": {
     "required": [],
     "edits": []
-  },
-  "userProfileUpdate": {
-    "goalsToAdd": [],
-    "goalsToRemove": [],
-    "preferencesToAdd": [],
-    "preferencesToRemove": [],
-    "miscToAdd": [],
-    "miscToRemove": [],
-    "fieldsToSet": {},
-    "fieldsToDelete": []
   }
 }
